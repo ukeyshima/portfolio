@@ -531,7 +531,7 @@ window.addEventListener("load", function () {
         let nextBranchPoint = branchPointStack[nextBranchPointNum];
         if (nextBranchPoint) {
             let targetBranchId = lastNumber - 1;
-            let nextBranchPointIndex = nextBranchPoint.indexNum;
+            let nextBranchPointIndex = nextBranchPoint.indexNum;                        
             let j = undoStack.length - (nextBranchPointIndex + 1);
             for (let i = 0; i < j; i++) {
                 undo();
@@ -658,7 +658,7 @@ window.addEventListener("load", function () {
             });
             img.src = stack[i].state;
             unbreraGUIContext.fillStyle = "#f00";
-            unbreraGUIContext.fillText(stack[i].branchPointId, x + i * imgSize / 2 * 3, y);
+            unbreraGUIContext.fillText(stack[i].totalBranchStack, x + i * imgSize / 2 * 3, y);
             registerEventListener(animationCanvas, "click", targetPointing(x + i * imgSize / 2 * 3, y, imgSize, stack[i]));
             if (stack[i].isBranchPoint) {
                 let totalSpread = -(stack[i].totalBranchStack - 1) / 2 + (stack[i].branchStack[0][stack[i].branchStack[0].length - 1].totalBranchStack - 1) / 2;

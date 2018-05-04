@@ -132,7 +132,7 @@ window.addEventListener("load", function () {
         gl.uniform2fv(uniLocation[0], [cw, ch]);
         gl.drawElements(gl.TRIANGLES, index.length, gl.UNSIGNED_SHORT, 0);
         gl.flush();
-        let keyNumber = Math.floor((ch - (e.clientY-result.height)) / (ch / 5.0)) * 4.0 + Math.floor((e.clientX) / (cw / 4.0));
+        let keyNumber = Math.floor((ch - (e.clientY-result.height)) / (ch / 5.0)) * 4.0 + Math.floor((e.clientX) / (cw / 4.0));        
         let operator = "undifined";
         switch (keyNumber) {
             case 0:
@@ -197,8 +197,6 @@ window.addEventListener("load", function () {
                 gl.flush();
                 break;
             case 18:
-
-
                 break;
             case 19:
                 operator = "/";
@@ -211,11 +209,12 @@ window.addEventListener("load", function () {
                 if (keyBuffer[keyBuffer.length - 1].type == "number") {
                     if (operator == "undifined") {
                         keyBuffer.push({ type: "number", key: keyNumber });
+                        console.log(script);
                         if (script == "0") {
                             script = keyNumber;
                         } else {
                             script += keyNumber;
-                        }
+                        }                        
                     } else {
                         keyBuffer.push({ type: "operator", key: operator });
                         if (operator == ".") {
