@@ -1,8 +1,6 @@
-#version 300 es
-precision highp float;
+precision mediump float;
 uniform float time;
 uniform vec2  resolution;
-out vec4 outColor;
 #define PI 3.141592
 const vec3 lightPos=vec3(0.0,5.0,5.0);
 const vec3 ambientColor=vec3(0.05);
@@ -105,5 +103,5 @@ void main(void){
         destColor+=alpha*getRayColor(ray,origin);
         alpha*=0.7;
     }
-    outColor=vec4(destColor,1.0);
+    gl_FragColor=vec4(destColor,1.0);
 }

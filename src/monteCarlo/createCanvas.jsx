@@ -1,7 +1,10 @@
-import React from "react";
-import vert from "./vertexShader.glsl";
-import frag from "./fragmentShader.glsl";
-const webGLStart = (canvas, gl, vs, fs) => {
+import React from 'react';
+import offRenderVs from './offScreenRenderingVertexShader.glsl';
+import offRenderFs from './offScreenRenderingFragmentShader.glsl';
+import vs from './vertexShader.glsl';
+import fs from './fragmentShader.glsl';
+
+const webGLStart = (canvas, gl, offRenderVs, offRenderFs, vs, fs) => {
   const create_program = (vs, fs) => {
     const program = gl.createProgram();
     gl.attachShader(program, vs);
@@ -28,7 +31,7 @@ const webGLStart = (canvas, gl, vs, fs) => {
   const create_vbo = data => {
     const vbo = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.DYNAMIC_COPY);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.STATIC_DRAW);
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
     return vbo;
   };
@@ -96,16 +99,23 @@ const webGLStart = (canvas, gl, vs, fs) => {
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
     return { f: frameBuffer, d: depthRenderBuffer, t: fTexture };
   };
-  const prg = create_program(
+  const offRenderProg = create_program(
+    create_shader(offRenderVs, gl.VERTEX_SHADER),
+    create_shader(offRenderFs, gl.FRAGMENT_SHADER)
+  );
+
+  const prog = create_program(
     create_shader(vs, gl.VERTEX_SHADER),
     create_shader(fs, gl.FRAGMENT_SHADER)
   );
+
+  const offRenderUniLocation = [];
+  offRenderUniLocation[0] = gl.getUniformLocation(offRenderProg, 'resolution');
+  offRenderUniLocation[1] = gl.getUniformLocation(offRenderProg, 'tex');
+  offRenderUniLocation[2] = gl.getUniformLocation(offRenderProg, 'frameCount');
+
   const uniLocation = [];
-  uniLocation[0] = gl.getUniformLocation(prg, "resolution");
-  uniLocation[1] = gl.getUniformLocation(prg, "time");
-  uniLocation[2] = gl.getUniformLocation(prg, "tex");
-  uniLocation[3] = gl.getUniformLocation(prg, "useTexture");
-  uniLocation[4] = gl.getUniformLocation(prg, "count");
+  uniLocation[0] = gl.getUniformLocation(prog, 'tex');
 
   const position = [
     -1.0,
@@ -124,14 +134,22 @@ const webGLStart = (canvas, gl, vs, fs) => {
   const index = [0, 2, 1, 1, 2, 3];
   const textureCoord = [0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0];
 
+  const offRenderAttLocation = [];
+  const offRenderAttStride = [];
+
   const attLocation = [];
   const attStride = [];
 
   const vPosition = create_vbo(position);
-  attLocation[0] = gl.getAttribLocation(prg, "position");
+  offRenderAttLocation[0] = gl.getAttribLocation(offRenderProg, 'position');
+  offRenderAttStride[0] = 3;
+  attLocation[0] = gl.getAttribLocation(prog, 'position');
   attStride[0] = 3;
+
   const vTextureCoord = create_vbo(textureCoord);
-  attLocation[1] = gl.getAttribLocation(prg, "textureCoord");
+  offRenderAttLocation[1] = gl.getAttribLocation(offRenderProg, 'textureCoord');
+  offRenderAttStride[1] = 2;
+  attLocation[1] = gl.getAttribLocation(prog, 'textureCoord');
   attStride[1] = 2;
 
   const vIndex = create_ibo(index);
@@ -143,39 +161,48 @@ const webGLStart = (canvas, gl, vs, fs) => {
 
   const startTime = new Date().getTime();
   gl.clearColor(1.0, 0.0, 0.0, 1.0);
-  let count = 0;
+  let frameCount = 0;
+  let dist = 0;
   return (() => {
+    gl.useProgram(offRenderProg);
     gl.bindFramebuffer(gl.FRAMEBUFFER, fBuffer[0].f);
     gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.uniform2fv(uniLocation[0], [canvas.width, canvas.height]);
-    gl.uniform1f(uniLocation[1], (new Date().getTime() - startTime) * 0.001);
-    gl.uniform1i(uniLocation[2], 0);
-    gl.uniform1i(uniLocation[3], false);
-    gl.uniform1f(uniLocation[4], 0);
-    set_attribute([vPosition, vTextureCoord], attLocation, attStride);
-    gl.drawElements(gl.TRIANGLES, index.length, gl.UNSIGNED_SHORT, 0);
-    gl.bindFramebuffer(gl.FRAMEBUFFER, null);    
-    let dist = 0;
+    gl.uniform2fv(offRenderUniLocation[0], [canvas.width, canvas.height]);
+    gl.uniform1i(offRenderUniLocation[1], 0);
+    gl.uniform1f(offRenderUniLocation[2], 0);
+    set_attribute(
+      [vPosition, vTextureCoord],
+      offRenderAttLocation,
+      offRenderAttStride
+    );    
+    gl.drawElements(gl.TRIANGLES, index.length, gl.UNSIGNED_SHORT, 0);    
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    frameCount++;
     const renderLoop = () => {
+      gl.useProgram(offRenderProg);
       gl.bindFramebuffer(gl.FRAMEBUFFER, fBuffer[dist].f);
       gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.uniform2fv(uniLocation[0], [canvas.width, canvas.height]);
-      gl.uniform1f(uniLocation[1], (new Date().getTime() - startTime) * 0.001);
-      gl.uniform1i(uniLocation[3], true);
-      gl.uniform1f(uniLocation[4], count);
       gl.bindTexture(gl.TEXTURE_2D, fBuffer[1 - dist].t);
-      set_attribute([vPosition], attLocation, attStride);
-      gl.drawElements(gl.TRIANGLES, index.length, gl.UNSIGNED_SHORT, 0);
+      gl.uniform2fv(offRenderUniLocation[0], [canvas.width, canvas.height]);
+      gl.uniform1i(offRenderUniLocation[1], 0);
+      gl.uniform1f(offRenderUniLocation[2], frameCount);
+      set_attribute(
+        [vPosition, vTextureCoord],
+        offRenderAttLocation,
+        offRenderAttStride
+      );      
+      gl.drawElements(gl.TRIANGLES, index.length, gl.UNSIGNED_SHORT, 0);      
       gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
+      gl.useProgram(prog);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.bindTexture(gl.TEXTURE_2D, fBuffer[dist].t);
-      gl.uniform1i(uniLocation[3], false);
-      gl.uniform1f(uniLocation[4], count);
-      set_attribute([vPosition], attLocation, attStride);
+      gl.uniform1i(uniLocation[0], 0);
+      set_attribute([vPosition, vTextureCoord], attLocation, attStride);
       gl.drawElements(gl.TRIANGLES, index.length, gl.UNSIGNED_SHORT, 0);
       dist = 1 - dist;
-      gl.flush();      
-      count++; 
+      gl.flush();
+      frameCount++;
     };
     return renderLoop;
   })();
@@ -192,22 +219,29 @@ class CreateCanvas extends React.Component {
   componentWillUnmount() {
     clearTimeout(this.timeoutId);
   }
-  updateCanvas() {    
+  updateCanvas() {
     this.canvas.width = this.props.style.width;
     this.canvas.height = this.props.style.height;
-    this.gl = this.canvas.getContext("webgl2");
-    const render = webGLStart(this.canvas,this.gl,vert(),frag());  
+    this.gl = this.canvas.getContext('webgl2');
+    const render = webGLStart(
+      this.canvas,
+      this.gl,
+      offRenderVs(),
+      offRenderFs(),
+      vs(),
+      fs()
+    );
     const loop = () => {
-      render();      
-      this.timeoutId = setTimeout(loop, 200);
+      render();
+      this.timeoutId = setTimeout(loop, 500);
     };
     loop();
   }
-  handleResize(w,h){
-/*    this.canvas.width = w;
+  handleResize(w, h) {
+    /*    this.canvas.width = w;
     this.canvas.height = h;
     this.gl.viewport(0,0,w,h);        */
-  }  
+  }
   render() {
     return (
       <canvas

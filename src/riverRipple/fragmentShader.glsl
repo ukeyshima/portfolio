@@ -1,8 +1,6 @@
-#version 300 es
-    precision highp float;
+    precision mediump float;
     uniform float time;
-    uniform vec2 resolution;
-    out vec4 outColor;
+    uniform vec2 resolution;    
     float random(vec2 p){
         return fract(sin(dot(p.xy,vec2(12.9898,78.233)))*43758.5453123)*2.0-1.0;
     }
@@ -88,5 +86,5 @@
     void main(void){
         vec2 p = (gl_FragCoord.xy * 2.0 - resolution) / min(resolution.x, resolution.y);
         vec3 color=pixelColor(p);
-        outColor=vec4(color,1.0);
+        gl_FragColor=vec4(color,1.0);
     }

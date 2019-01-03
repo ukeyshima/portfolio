@@ -6,6 +6,7 @@
   uniform float time;
   out vec3 vPosition;  
   out vec3 vNormal;  
+  out float vDepth;
   uniform vec3 eyePosition;  
   out vec3 vEyePosition;
   uniform vec3 viewPoint;
@@ -133,5 +134,6 @@ float random2(float p){
       mat4 mvpMatrix=pMatrix*vMatrix*mMatrix;
       vPosition=(mMatrix*vec4(position,1.0)).xyz;
       vNormal=(mMatrix*vec4(normal,0.0)).xyz;
-      gl_Position =mvpMatrix*vec4(position, 1.0);               
+      gl_Position =mvpMatrix*vec4(position, 1.0);       
+      vDepth = gl_Position.z / gl_Position.w;                   
     }

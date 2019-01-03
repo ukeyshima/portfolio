@@ -1,13 +1,8 @@
-import React from "react";
-import CreateCanvas from "./createCanvas.jsx";
-import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
+import React from 'react';
+import CreateCanvas from './createCanvas.jsx';
+import style from './style.scss';
 
-class Result extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+class Result extends React.Component {  
   render() {
     return (
       <p
@@ -18,10 +13,10 @@ class Result extends React.Component {
           margin: 0,
           padding: 0,
           fontSize: 100,
-          backgroundColor: "rgb(41,41,49)",
-          color: "#fff",
-          textAlign: "right",
-          fontFamily:"MS Sans Serif"
+          backgroundColor: 'rgb(41,41,49)',
+          color: '#fff',
+          textAlign: 'right',
+          fontFamily: 'MS Sans Serif'
         }}
       >
         {this.props.result}
@@ -34,7 +29,7 @@ class Calculator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      result: ""
+      result: ''
     };
   }
   updateState(result) {
@@ -42,15 +37,15 @@ class Calculator extends React.Component {
       result: result
     });
   }
-  handleResize(w,h){
-    this.refs.createCanvas.handleResize(w,h*0.8);
+  handleResize(w, h) {
+    this.refs.createCanvas.handleResize(w, h * 0.8);
   }
   render() {
     return (
       <div {...this.props}>
         <Result result={this.state.result} />
         <CreateCanvas
-        ref="createCanvas"
+          ref='createCanvas'
           style={{
             width: this.props.style.width,
             height: this.props.style.height * 0.8
@@ -66,7 +61,7 @@ class Calculator extends React.Component {
   }
 }
 
-class GpgpuCalculator extends React.Component {
+export default class GpgpuCalculator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -74,13 +69,14 @@ class GpgpuCalculator extends React.Component {
       height: window.innerHeight
     };
   }
-  componentDidMount() {
-    document.body.style.overflow="hidden";
+  componentDidMount() {    
+    style.use();
     this.tempHandleResize = this.handleResize.bind(this);
-    window.addEventListener("resize", this.tempHandleResize);
+    window.addEventListener('resize', this.tempHandleResize);
   }
   componentWillUnmount() {
-    window.removeEventListener("resize", this.tempHandleResize);
+    style.unuse();
+    window.removeEventListener('resize', this.tempHandleResize);
   }
   handleResize(e) {
     const width = e.target.innerWidth;
@@ -93,28 +89,13 @@ class GpgpuCalculator extends React.Component {
   }
   render() {
     return (
-      <React.Fragment>
       <Calculator
-      ref="calculator"
+        ref='calculator'
         style={{
           width: this.state.width,
           height: this.state.height
         }}
       />
-      <p 
-      id="title"
-      style={{
-        position:"absolute",
-        bottom:"20px",
-        left:"20px",
-        fontSize:"100px",
-        margin:0
-      }}>
-      {location.hash.split("/")[1]}
-      </p>
-    </React.Fragment>
     );
   }
 }
-
-export default GpgpuCalculator;

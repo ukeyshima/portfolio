@@ -28,7 +28,7 @@ const webGLStart = (canvas, gl, vs, fs) => {
   const create_vbo = data => {
     const vbo = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.DYNAMIC_COPY);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.STATIC_DRAW);
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
     return vbo;
   };
@@ -112,7 +112,7 @@ class CreateCanvas extends React.Component {
   updateCanvas() {    
     this.canvas.width = this.props.style.width;
     this.canvas.height = this.props.style.height;
-    this.gl = this.canvas.getContext("webgl2");
+    this.gl = this.canvas.getContext("webgl");
     const render=webGLStart(this.canvas,this.gl,vert(),frag());
     const loop=()=>{
       render();

@@ -28,7 +28,7 @@ const webGLStart = (canvas, gl, vs, fs) => {
   const create_vbo = data => {
     const vbo = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.DYNAMIC_COPY);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.STATIC_DRAW);
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
     return vbo;
   };
@@ -87,12 +87,14 @@ const webGLStart = (canvas, gl, vs, fs) => {
 
   const startTime = new Date().getTime();
   const render = () => {
+    let time = (new Date().getTime() - startTime) * 0.001;
+    time = time % 3;
     gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.uniform1f(uniLocation[0], (new Date().getTime() - startTime) * 0.001);
+    gl.uniform1f(uniLocation[0], time);
     gl.uniform2fv(uniLocation[1], [canvas.width, canvas.height]);
     set_attribute([vPosition], attLocation, attStride);
     gl.drawElements(gl.TRIANGLES, index.length, gl.UNSIGNED_SHORT, 0);
-    gl.flush();    
+    gl.flush();
   };
   return render;
 };
@@ -100,30 +102,30 @@ const webGLStart = (canvas, gl, vs, fs) => {
 class CreateCanvas extends React.Component {
   constructor(props) {
     super(props);
-    this.requestId=0;
+    this.requestId = 0;
   }
   componentDidMount() {
     this.updateCanvas();
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     cancelAnimationFrame(this.requestId);
   }
-  updateCanvas() {    
+  updateCanvas() {
     this.canvas.width = this.props.style.width;
     this.canvas.height = this.props.style.height;
-    this.gl = this.canvas.getContext("webgl2");
-    const render=webGLStart(this.canvas, this.gl, vert(), frag());
-    const loop=()=>{
+    this.gl = this.canvas.getContext("webgl");
+    const render = webGLStart(this.canvas, this.gl, vert(), frag());
+    const loop = () => {
       render();
-      this.requestId=requestAnimationFrame(loop);
+      this.requestId = requestAnimationFrame(loop);
     }
     loop();
   }
-  handleResize(w,h){
+  handleResize(w, h) {
     this.canvas.width = w;
     this.canvas.height = h;
-    this.gl.viewport(0,0,w,h);        
-  }  
+    this.gl.viewport(0, 0, w, h);
+  }
   render() {
     return (
       <canvas

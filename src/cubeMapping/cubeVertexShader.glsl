@@ -1,6 +1,7 @@
 #version 300 es
   layout (location = 0)in vec3 position;      
   out vec3 vPosition;              
+  out float vDepth;
   uniform vec3 eyePosition;
   uniform vec3 viewPoint;
   uniform vec2 resolution;      
@@ -107,13 +108,15 @@
       0.0,0.0,-(far*near*2.0)/c,0.0
     );
     return dest;
-  }                                         
-      void main(void){                       
-      mat4 mMatrix=identity;   
-      mMatrix=scale(mMatrix,vec3(100.0));      
-      mat4 vMatrix=lookAt(eyePosition,viewPoint,vec3(0.0,1.0,0.0));
-      mat4 pMatrix=perspective(90.0,resolution.x/resolution.y,0.1,1000.0);
-      mat4 mvpMatrix=pMatrix*vMatrix*mMatrix;
-      vPosition=(mMatrix*vec4(position,1.0)).xyz;      
-      gl_Position =mvpMatrix*vec4(position, 1.0);                
-      }
+  }       
+                                    
+void main(void){                       
+  mat4 mMatrix=identity;   
+  mMatrix=scale(mMatrix,vec3(100.0));      
+  mat4 vMatrix=lookAt(eyePosition,viewPoint,vec3(0.0,1.0,0.0));
+  mat4 pMatrix=perspective(90.0,resolution.x/resolution.y,0.1,1000.0);
+  mat4 mvpMatrix=pMatrix*vMatrix*mMatrix;
+  vPosition=(mMatrix*vec4(position,1.0)).xyz;
+  gl_Position=mvpMatrix*vec4(position, 1.0);     
+  vDepth = gl_Position.z / gl_Position.w;           
+}

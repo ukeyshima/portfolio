@@ -1,8 +1,8 @@
-import React from "react";
-import CreateCanvas from "./createCanvas.jsx";
-import ReactDOM from "react-dom";
+import React from 'react';
+import CreateCanvas from './createCanvas.jsx';
+import style from './style.scss';
 
-class Autumn extends React.Component {
+export default class Autumn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,12 +11,13 @@ class Autumn extends React.Component {
     };
   }
   componentDidMount() {
-    document.body.style.overflow = "hidden";
+    style.use();    
     this.tempHandleResize = this.handleResize.bind(this);
-    window.addEventListener("resize", this.tempHandleResize);
+    window.addEventListener('resize', this.tempHandleResize);
   }
   componentWillUnmount() {
-    window.removeEventListener("resize", this.tempHandleResize);
+    style.unuse();
+    window.removeEventListener('resize', this.tempHandleResize);
   }
   handleResize(e) {
     const width = e.target.innerWidth;
@@ -29,29 +30,13 @@ class Autumn extends React.Component {
   }
   render() {
     return (
-      <React.Fragment>
-        <CreateCanvas
-          ref="createCanvas"
-          style={{
-            width: this.state.width,
-            height: this.state.height
-          }}
-        />
-        <p
-          id="title"
-          style={{
-            position: "absolute",
-            bottom: "20px",
-            left: "20px",
-            fontSize: "100px",
-            margin: 0
-          }}
-        >
-          {location.hash.split("/")[1]}
-        </p>
-      </React.Fragment>
+      <CreateCanvas
+        ref='createCanvas'
+        style={{
+          width: this.state.width,
+          height: this.state.height
+        }}
+      />
     );
   }
 }
-
-export default Autumn;
