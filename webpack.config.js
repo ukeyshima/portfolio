@@ -1,21 +1,16 @@
-require('@babel/core');
-require('@babel/polyfill');
-
 const path = require('path');
 const src = path.resolve(__dirname, 'src');
 const docs = path.resolve(__dirname, 'docs');
 
 module.exports = {
-  entry: [src + '/main.jsx'],
+  entry: [path.join(src, 'main.jsx')],
   output: {
     path: docs,
     filename: '[name].bundle.js'
   },
-  devtool: 'inline-source-map',
   devServer: {
     host: '0.0.0.0',
-    contentBase: docs,
-    disableHostCheck: true
+    contentBase: docs
   },
   module: {
     rules: [
@@ -43,6 +38,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js']
+    extensions: ['.js', '.jsx']
   }
 };
