@@ -1,9 +1,9 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import PropertyArea from './propertyArea.jsx';
-import DrawArea from './drawArea.jsx';
-import GuiArea from './guiArea.jsx';
-import GestureArea from './gestureArea.jsx';
+import PropertyArea from './propertyArea';
+import DrawArea from './drawArea';
+import GuiArea from './guiArea';
+import GestureArea from './gestureArea';
 
 @inject(({ state }, props) => {
   return {

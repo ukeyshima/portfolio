@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import UndoManager from './undoManager.js';
-import DrawAreaHeader from './drawAreaHeader.jsx';
+import DrawAreaHeader from './drawAreaHeader';
 
 const dist = (x1, y1, x2, y2) => {
   return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));

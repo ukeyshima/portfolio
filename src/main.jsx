@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Portfolio from './portfolio.jsx';
+import Portfolio from './portfolio';
 import State from './store.js';
 import { Provider, inject, observer } from 'mobx-react';
 

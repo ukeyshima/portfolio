@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import GuiAreaHeader from './guiAreaHeader.jsx';
+import GuiAreaHeader from './guiAreaHeader';
 
 @inject(({ state }, props) => {
   return {

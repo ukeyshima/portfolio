@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './header.jsx';
+import Header from './header';
 import icon from './assets/img/icon.png';
 import style from './style.scss';
 

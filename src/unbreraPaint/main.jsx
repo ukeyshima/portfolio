@@ -1,6 +1,6 @@
 import React from 'react';
-import Head from './head.jsx';
-import Body from './body.jsx';
+import Head from './head';
+import Body from './body';
 import { Provider, inject, observer } from 'mobx-react';
 import State from './store.js';
 import 'pepjs';

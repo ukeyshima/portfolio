@@ -1,6 +1,6 @@
 import React from 'react';
-import WorkDescription from './workDescription.jsx';
-import WorkRelation from './workRelation.jsx';
+import WorkDescription from './workDescription';
+import WorkRelation from './workRelation';
 
 export default class WorkRepletion extends React.Component {
   render() {

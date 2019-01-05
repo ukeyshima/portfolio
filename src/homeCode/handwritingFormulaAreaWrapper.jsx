@@ -2,8 +2,8 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { FaExchangeAlt } from 'react-icons/fa';
-import HandWritingFormulaArea from './handWritingFormulaArea.jsx';
-import HandWritingExchange from './handWritingExchange.jsx';
+import HandWritingFormulaArea from './handWritingFormulaArea';
+import HandWritingExchange from './handWritingExchange';
 
 @inject(({ state }, props) => {
   return {

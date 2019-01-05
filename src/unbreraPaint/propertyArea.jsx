@@ -1,14 +1,14 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import ColorPropertyArea from './colorPropertyArea.jsx';
-import StrokeWidthPropertyArea from './strokeWidthPropertyArea.jsx';
-import PreviewStrokePropertyArea from './previewStrokePropertyArea.jsx';
-import RectPropertyArea from './rectPropertyArea.jsx';
-import CirclePropertyArea from './circlePropertyArea.jsx';
-import LinePropertyArea from './linePropertyArea.jsx';
-import OpacityPropertyArea from './opacityPropertyArea.jsx';
-import ColorPickerPropertyArea from './colorPickerPropertyArea.jsx';
-import ClearPropertyArea from './clearPropertyArea.jsx';
+import ColorPropertyArea from './colorPropertyArea';
+import StrokeWidthPropertyArea from './strokeWidthPropertyArea';
+import PreviewStrokePropertyArea from './previewStrokePropertyArea';
+import RectPropertyArea from './rectPropertyArea';
+import CirclePropertyArea from './circlePropertyArea';
+import LinePropertyArea from './linePropertyArea';
+import OpacityPropertyArea from './opacityPropertyArea';
+import ColorPickerPropertyArea from './colorPickerPropertyArea';
+import ClearPropertyArea from './clearPropertyArea';
 
 @inject(({ state }, props) => {
   return {

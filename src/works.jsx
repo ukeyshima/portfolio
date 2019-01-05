@@ -1,7 +1,7 @@
 import React from 'react';
 import json from './assets/main.json';
-import ThumbnailWrapper from './thumbnailWrapper.jsx';
-import Header from './header.jsx';
+import ThumbnailWrapper from './thumbnailWrapper';
+import Header from './header';
 import style from './style.scss';
 
 export default class Works extends React.Component {

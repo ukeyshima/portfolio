@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import GestureAreaHeader from './gestureAreaHeader.jsx';
+import GestureAreaHeader from './gestureAreaHeader';
 
 @inject(({ state }) => ({
   gestureAreaPositionX: state.gestureAreaPosition.x,

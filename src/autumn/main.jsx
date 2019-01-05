@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateCanvas from './createCanvas.jsx';
+import CreateCanvas from './createCanvas';
 import style from './style.scss';
 
 export default class Autumn extends React.Component {

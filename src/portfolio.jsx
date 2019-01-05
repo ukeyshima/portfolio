@@ -8,11 +8,11 @@ import {
   Switch
 } from 'react-router-dom';
 
-import Works from './works.jsx';
-import About from './about.jsx';
+import Works from './works';
+import About from './about';
 import json from './assets/main.json';
 import Loadable from 'react-loadable';
-import Loading from './loading/main.jsx';
+import Loading from './loading/main';
 
 @inject(({ state }) => ({
   work: state.work,
@@ -40,11 +40,7 @@ export default class Portfolio extends React.Component {
             <Route exact={true} path='/about' component={About} />
             {this.props.work.map((e, i) => {
               return (
-                <Route
-                  exact={true}
-                  path={`/${json[i].name}`}
-                  component={e}
-                />
+                <Route exact={true} path={`/${json[i].name}`} component={e} />
               );
             })}
           </Switch>

@@ -1,6 +1,6 @@
 import React from 'react';
-import Thumbnail from './thumbnail.jsx';
-import WorkRepletion from './workRepletion.jsx';
+import Thumbnail from './thumbnail';
+import WorkRepletion from './workRepletion';
 
 export default class ThumbnailWrapper extends React.Component {
   render() {
