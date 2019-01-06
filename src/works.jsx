@@ -33,6 +33,7 @@ export default class Works extends React.Component {
           {this.state.thumbnails.map((e, i) => {
             return (
               <ThumbnailWrapper
+                key={i}
                 name={json[i].name}
                 description={json[i].description}
                 relation={json[i].relation}

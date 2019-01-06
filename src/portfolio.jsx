@@ -40,7 +40,12 @@ export default class Portfolio extends React.Component {
             <Route exact={true} path='/about' component={About} />
             {this.props.work.map((e, i) => {
               return (
-                <Route exact={true} path={`/${json[i].name}`} component={e} />
+                <Route
+                  key={i}
+                  exact={true}
+                  path={`/${json[i].name}`}
+                  component={e}
+                />
               );
             })}
           </Switch>
