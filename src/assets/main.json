@@ -37,6 +37,14 @@
     ]
   },
   {
+    "name": "LShapedBlocks",
+    "description": "レイマーチングで不可能立体",
+    "relation": [
+      { "github": "https://github.com/ukeyshima/LShapedBlocks" },
+      { "shadertoy": "https://www.shadertoy.com/view/WsX3WB" }
+    ]
+  },
+  {
     "name": "monteCarlo",
     "description": "モンテカルロ法を用いて拡散反射光を考慮したレイマーチング",
     "relation": [
@@ -108,6 +116,11 @@
     "name": "unbreraPaint",
     "description": "木構造Undoインタフェースを搭載したペイントソフト",
     "relation": [{ "github": "https://github.com/ukeyshima/unbreraPaint" }]
+  },
+  {
+    "name": "unbreraEditor",
+    "description": "木構造Undoインタフェースを搭載したプログラミングエディタ",
+    "relation": [{ "github": "https://github.com/ukeyshima/unbreraEditor" }]
   },
   {
     "name": "homeCode",
