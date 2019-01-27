@@ -37,6 +37,14 @@
     ]
   },
   {
+    "name": "emitFractal",
+    "description": "発光するフラクタル",
+    "relation": [
+      { "github": "https://github.com/ukeyshima/emitFractal" },
+      { "shadertoy": "https://www.shadertoy.com/view/wsB3DR" }
+    ]
+  },
+  {
     "name": "LShapedBlocks",
     "description": "レイマーチングで不可能立体",
     "relation": [
