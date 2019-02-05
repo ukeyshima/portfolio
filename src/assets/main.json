@@ -45,6 +45,14 @@
     ]
   },
   {
+    "name": "sacredShrubs",
+    "description": "レイマーチングでフラクタル",
+    "relation": [
+      { "github": "https://github.com/ukeyshima/sacredShrubs" },
+      { "shadertoy": "https://www.shadertoy.com/view/tdB3zV" }
+    ]
+  },
+  {
     "name": "LShapedBlocks",
     "description": "レイマーチングで不可能立体",
     "relation": [
