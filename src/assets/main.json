@@ -5,11 +5,12 @@
     "relation": [{ "github": "https://github.com/ukeyshima/reflectionBall" }]
   },
   {
-    "name": "randomize",
-    "description": "modで直方体をランダムにオフセット",
+    "name": "overshootMeasure",
+    "description": "レイマーチングにおけるmodによるレイのオーバーシュート対策",
     "relation": [
-      { "github": "https://github.com/ukeyshima/randomizeHeight" },
-      { "qiita": "https://qiita.com/ukeyshima/items/221b0384d39f521cad8f" }
+      { "github": "https://github.com/ukeyshima/ray-overshoot-measures-by-mod" },      
+      { "qiita": "https://qiita.com/ukeyshima/items/221b0384d39f521cad8f" },
+      {"shadertoy":"https://www.shadertoy.com/view/Ws23Wd"}
     ]
   },
   {
