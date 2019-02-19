@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './assets/img/logo.png';
 import {
   BrowserRouter,
   HashRouter,
@@ -15,7 +14,7 @@ export default class Header extends React.Component {
         <div
           className='logo'
           style={{
-            backgroundImage: `url(${logo})`
+            backgroundImage: `url(./img/logo.png)`
           }}
         />
         <div className='pageLink'>

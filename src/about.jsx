@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './header';
-import icon from './assets/img/icon.png';
 import style from './style.scss';
 
 export default class About extends React.Component {
@@ -18,7 +17,7 @@ export default class About extends React.Component {
           <div
             className='icon'
             style={{
-              backgroundImage: `url(${icon})`
+              backgroundImage: `url(./img/icon.png)`
             }}
           />
           <div className='profile'>
