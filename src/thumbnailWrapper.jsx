@@ -7,7 +7,7 @@ export default class ThumbnailWrapper extends React.Component {
     return (
       <div className='thumbnailWrapper'>
         <div className='thumbnailName'>{this.props.name}</div>
-        <Thumbnail name={this.props.name} img={this.props.img} />
+        <Thumbnail name={this.props.name} />
         <WorkRepletion
           description={this.props.description}
           relation={this.props.relation}

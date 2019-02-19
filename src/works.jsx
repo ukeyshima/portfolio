@@ -4,23 +4,9 @@ import ThumbnailWrapper from './thumbnailWrapper';
 import Header from './header';
 import style from './style.scss';
 
-export default class Works extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      thumbnails: []
-    };
-  }
+export default class Works extends React.Component { 
   async componentDidMount() {
-    style.use();
-    const thumbnails = await Promise.all(
-      json.map(e => {
-        return import(`./assets/img/${e.name}.png`);
-      })
-    );
-    this.setState({
-      thumbnails: thumbnails
-    });
+    style.use();    
   }
   componentWillUnmount() {
     style.unuse();
@@ -30,14 +16,13 @@ export default class Works extends React.Component {
       <React.Fragment>
         <Header />
         <div className='works'>
-          {this.state.thumbnails.map((e, i) => {
+          {json.map((e, i) => {
             return (
               <ThumbnailWrapper
                 key={i}
-                name={json[i].name}
+                name={e.name}
                 description={json[i].description}
-                relation={json[i].relation}
-                img={e.default}
+                relation={json[i].relation}                
               />
             );
           })}
