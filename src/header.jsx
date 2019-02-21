@@ -6,6 +6,7 @@ import {
   Link,
   Switch
 } from 'react-router-dom';
+import logo from './assets/img/logo.png';
 
 export default class Header extends React.Component {
   render() {
@@ -14,7 +15,7 @@ export default class Header extends React.Component {
         <div
           className='logo'
           style={{
-            backgroundImage: `url(./img/logo.png)`
+            backgroundImage: `url(${logo})`
           }}
         />
         <div className='pageLink'>

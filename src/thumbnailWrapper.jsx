@@ -4,10 +4,10 @@ import WorkRepletion from './workRepletion';
 
 export default class ThumbnailWrapper extends React.Component {
   render() {
-    return (
+    return (      
       <div className='thumbnailWrapper'>
         <div className='thumbnailName'>{this.props.name}</div>
-        <Thumbnail name={this.props.name} />
+        <Thumbnail name={this.props.name} thumbnail={this.props.thumbnail} />
         <WorkRepletion
           description={this.props.description}
           relation={this.props.relation}

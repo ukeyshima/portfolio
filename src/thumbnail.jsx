@@ -8,12 +8,12 @@ import {
 } from 'react-router-dom';
 
 export default class Thumbnail extends React.Component {
-  render() {    
+  render() {
     return (
       <div
         className='thumbnail'
         style={{
-          backgroundImage: `url(./img/${this.props.name}.png)`
+          backgroundImage: `url(${this.props.thumbnail})`
         }}
       >
         <Link className='workLink' to={`/${this.props.name}`} />

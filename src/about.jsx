@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './header';
+import icon from './assets/img/icon.png';
 import style from './style.scss';
 
 export default class About extends React.Component {
@@ -17,7 +18,7 @@ export default class About extends React.Component {
           <div
             className='icon'
             style={{
-              backgroundImage: `url(./img/icon.png)`
+              backgroundImage: `url(${icon})`
             }}
           />
           <div className='profile'>
@@ -41,9 +42,7 @@ export default class About extends React.Component {
             <h2>関連リンク</h2>
             <p>
               <a href='https://github.com/ukeyshima'>GitHub</a>
-              <a href='https://www.shadertoy.com/user/ukeyshima'>
-                Shadertoy
-              </a>
+              <a href='https://www.shadertoy.com/user/ukeyshima'>Shadertoy</a>
               <a href='https://qiita.com/ukeyshima'>Qiita</a>
               <a href='https://twitter.com/ukeyshima'>Twitter</a>
             </p>
