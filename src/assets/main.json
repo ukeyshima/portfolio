@@ -130,6 +130,13 @@
     ]
   },
   {
+    "name":"BillBill",
+    "description":"差をつけた支払いの際に使う計算機",
+    "relation": [
+      { "github": "https://github.com/ukeyshima/BillBill" }
+    ]
+  },
+  {
     "name": "unbreraPaint",
     "description": "木構造Undoインタフェースを搭載したペイントソフト",
     "relation": [{ "github": "https://github.com/ukeyshima/unbreraPaint" }]
