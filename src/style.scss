@@ -222,12 +222,12 @@ $iconSize: 200px;
     float: left;
     width: #{$thumbnailWrapperWidth};
     height: $thumbnailWrapperHeight;
-    margin-left: calc((100% - #{$thumbnailWrapperWidth} * 2) / 3);
+    margin-left: calc((100% - #{$thumbnailWrapperWidth} * 3) / 4);
   }
-  .works .thumbnailWrapper:nth-of-type(2n) {
-    margin-right: calc((100% - #{$thumbnailWrapperWidth} * 2) / 3);
+  .works .thumbnailWrapper:nth-of-type(3n) {
+    margin-right: calc((100% - #{$thumbnailWrapperWidth} * 3) / 4);
   }
-  .works .thumbnailWrapper:nth-of-type(-n + 2) {
+  .works .thumbnailWrapper:nth-of-type(-n + 3) {
     margin-top: 0;
   }
   .workRepletion {

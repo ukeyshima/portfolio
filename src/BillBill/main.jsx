@@ -11,7 +11,7 @@ const stores = {
 };
 
 
-class BillBill extends React.Component {  
+export default class BillBill extends React.Component {  
   componentDidMount(){
     style.use();
   }
@@ -29,5 +29,3 @@ class BillBill extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<BillBill />, document.getElementById('root'));

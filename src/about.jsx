@@ -26,19 +26,23 @@ export default class About extends React.Component {
             <p>島田 雄輝 (Yuki Shimada)</p>
             <h2>所属</h2>
             <p>
-              明治大学 総合数理学部 先端メディアサイエンス学科 宮下研究室 B4
+              明治大学 先端数理科学研究科 先端メディアサイエンス専攻 宮下研究室 M1
             </p>
             <h2>研究分野</h2>
-            <p>Human-Computer Interaction, Programming Experience</p>
+            <p>Human-Computer Interaction, Programming Experience, Gaze Interaction</p>
             <h2>発表業績</h2>
             <p>
               島田雄輝，薄羽大樹，宮下芳明．数式の記述方法を選択できるプログラミングインタフェース，第26回インタラクティブシステムとソフトウェアに関するワークショップ
               (WISS2018) 論文集，2018．
             </p>
             <h2>趣味</h2>
-            <p>Programming, Computer-Graphics, 塾講師, 居合道</p>
+            <p>Programming, Computer-Graphics</p>
             <h2>資格</h2>
-            <p>剣道二段, 居合道二段</p>
+            <p>CGエンジニア検定 エキスパート, 剣道二段, 居合道二段</p>
+            <h2>職歴</h2>
+            <p>株式会社 東京個別指導学院 (講師)</p>
+            <p>株式会社 TANOsim (エンジニア)</p>
+            <p>株式会社 チームラボ (インタラクティブエンジニア)</p>
             <h2>関連リンク</h2>
             <p>
               <a href='https://github.com/ukeyshima'>GitHub</a>

@@ -6,11 +6,19 @@
   },
   {
     "name": "overshootMeasure",
-    "description": "レイマーチングにおけるmodによるレイのオーバーシュート対策",
+    "description": "レイマーチングにおけるレイのオーバーシュート対策",
     "relation": [
       { "github": "https://github.com/ukeyshima/ray-overshoot-measures-by-mod" },      
       { "qiita": "https://qiita.com/ukeyshima/items/221b0384d39f521cad8f" },
       {"shadertoy":"https://www.shadertoy.com/view/Ws23Wd"}
+    ]
+  },
+   {
+    "name": "gridCube",
+    "description": "グリッドに分割したキューブ",
+    "relation": [
+      { "github": "https://github.com/ukeyshima/gridCube" },            
+      {"shadertoy":"https://www.shadertoy.com/view/ttlGzj"}
     ]
   },
   {
@@ -51,6 +59,14 @@
     "relation": [
       { "github": "https://github.com/ukeyshima/sacredShrubs" },
       { "shadertoy": "https://www.shadertoy.com/view/tdB3zV" }
+    ]
+  },
+  {
+    "name": "sacredTunnel",
+    "description": "レイマーチングでトンネル型のフラクタル",
+    "relation": [
+      { "github": "https://github.com/ukeyshima/sacred-tunnel" },
+      { "shadertoy": "https://www.shadertoy.com/view/wlsXR2" }
     ]
   },
   {
@@ -105,6 +121,14 @@
     ]
   },
   {
+    "name": "witchsFog",
+    "description": "PerlinNoise × レイマーチングで雷のような表現",
+    "relation": [
+      { "github": "https://github.com/ukeyshima/witch-sFog" },
+      { "shadertoy": "https://www.shadertoy.com/view/3s2SWc" }
+    ]
+  },
+  {
     "name": "perlinNoiseFlame",
     "description": "PerlinNoiseで炎の球を表現",
     "relation": [
@@ -131,7 +155,7 @@
   },
   {
     "name":"BillBill",
-    "description":"差をつけた支払いの際に使う計算機",
+    "description":"飲み会などで差をつけた支払いの際に使う計算機",
     "relation": [
       { "github": "https://github.com/ukeyshima/BillBill" }
     ]
