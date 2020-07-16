@@ -22,7 +22,7 @@
     "glsl-man": "^1.1.14",
     "json-loader": "^0.5.7",
     "katex": "^0.10.0-rc.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "mathjs": "^5.1.1",
     "mathjs-simple-integral": "^0.1.1",
     "mobx": "^5.8.0",
