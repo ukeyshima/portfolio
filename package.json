@@ -28,7 +28,7 @@
     "mobx": "^5.8.0",
     "mobx-react": "^5.4.3",
     "myscript": "^4.2.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "pepjs": "^0.4.3",
     "raw-loader": "^2.0.0",
     "react": "^16.7.0",
